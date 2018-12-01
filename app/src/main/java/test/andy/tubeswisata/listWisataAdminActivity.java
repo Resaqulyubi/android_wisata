@@ -3,16 +3,12 @@ package test.andy.tubeswisata;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,17 +24,15 @@ import java.util.Date;
 import java.util.List;
 
 
-import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.Response;
+import test.andy.tubeswisata.model.wisata;
 import test.andy.tubeswisata.network.Api;
 import test.andy.tubeswisata.util.Util;
 
-import static android.view.View.GONE;
-
-public class listWisataActivity extends AppCompatActivity {
-    private listWisataActivity obj;
-    private AdapterWisata adapter;
+public class listWisataAdminActivity extends AppCompatActivity {
+    private listWisataAdminActivity obj;
+    private AdapterWisataAdmin adapter;
 
 
     @Override
@@ -48,12 +42,12 @@ public class listWisataActivity extends AppCompatActivity {
 
         ListView lsvw_data=findViewById(R.id.id_list);
 
-        obj = listWisataActivity.this;
+        obj = this;
 
 
-        adapter=new AdapterWisata(this);
+        adapter=new AdapterWisataAdmin(this);
         lsvw_data.setAdapter(adapter);
-        getRecord();
+
 
         lsvw_data.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -62,11 +56,11 @@ public class listWisataActivity extends AppCompatActivity {
                 showDialogListOpsi(j -> {
                     if (j == 0) {
                         adapter.getItem(position);
-                        AlertDialog.Builder builder = new AlertDialog.Builder(listWisataActivity.this);
-                        builder.setMessage("Pastikan Data Notifikasi yang sudah Solve, lanjutkan?");
+                        AlertDialog.Builder builder = new AlertDialog.Builder(listWisataAdminActivity.this);
+                        builder.setMessage("item akan dihapus Lanjutkan?");
                         builder.setPositiveButton("YA", (dialogInterface, i) -> {
 //                            solve(adapter.getItem(position).getId());
-                            Toast.makeText(listWisataActivity.this, "Berhasil disimpan", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(listWisataAdminActivity.this, "Berhasil disimpan", Toast.LENGTH_SHORT).show();
                         });
                         builder.setNegativeButton("TIDAK", (dialogInterface, i) -> {
                         });
@@ -74,28 +68,26 @@ public class listWisataActivity extends AppCompatActivity {
                         dialog.show();
 
                     }
-                }, listWisataActivity.this);
+                }, listWisataAdminActivity.this);
 
             }
 
         });
 
-
+        getRecord();
     }
 
 
 
     public boolean getRecord() {
         boolean[] a = {false};
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM");
-        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         new AsyncTask<Void, Void, Boolean>() {
             Date dStart = null;
             Date dEnd = null;
 //            https://www.studytutorial.in/android-line-chart-or-line-graph-using-mpandroid-library-tutorial
 //            List<TransactionDB> transactions = new ArrayList<>();
 
-            ProgressDialog dialog =new ProgressDialog(listWisataActivity.this);
+            ProgressDialog dialog =new ProgressDialog(listWisataAdminActivity.this);
 
             @Override
             protected void onPreExecute() {
@@ -119,7 +111,7 @@ public class listWisataActivity extends AppCompatActivity {
 
                 HttpUrl.Builder httpUrlBuilder = new HttpUrl.Builder();
 
-                try (Response response = new Api(listWisataActivity.this).
+                try (Response response = new Api(listWisataAdminActivity.this).
                         get(getString(R.string.api_wisata))) {
                     if (response == null || !response.isSuccessful())
                         throw new IOException("Unexpected code = " + response);
@@ -127,15 +119,15 @@ public class listWisataActivity extends AppCompatActivity {
                     String responseBodyString = response.body().string();
                     JSONObject responseBodyObject = new JSONObject(responseBodyString);
 
-                    List<reportPeralatan.Data> reportPeralatans =new ArrayList<>();
+                    List<wisata.Data> data =new ArrayList<>();
 
                     if (responseBodyObject.getBoolean("status")) {
                         Gson gson = new Gson();
-                        reportPeralatan reportPeralatan = gson.fromJson(responseBodyString, reportPeralatan.class);
+                        wisata fromJson = gson.fromJson(responseBodyString, wisata.class);
 
-                        for (int x = 0; x < reportPeralatan.getData().size(); x++) {
+                        for (int x = 0; x < fromJson.getData().size(); x++) {
 
-                            reportPeralatans.add(reportPeralatan.getData().get(x));
+                            data.add(fromJson.getData().get(x));
 
                         }
 
@@ -143,14 +135,14 @@ public class listWisataActivity extends AppCompatActivity {
                         obj.runOnUiThread(new Runnable() {
 
                             public void run() {
-                                adapter.setList(reportPeralatans);
+                                adapter.setList(data);
 
                             }
                         });
                     }else {
                         obj.runOnUiThread(new Runnable() {
                             public void run() {
-                                adapter.setList(reportPeralatans);
+                                adapter.setList(data);
                                 Toast.makeText(obj, "Tidak Ada data", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -290,7 +282,7 @@ public class listWisataActivity extends AppCompatActivity {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context, R.style.Theme_Dialog_Margin_4);
         List<String> where = new ArrayList<String>();
 
-        where.add("Solve");
+        where.add("Hapus");
 
         String[] strings = new String[where.size()];
         where.toArray(strings);
