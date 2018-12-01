@@ -31,7 +31,6 @@ public class MainActivity extends Activity {
     private AdapterWisataUser adapter;
     private MainActivity obj;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

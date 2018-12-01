@@ -3,6 +3,7 @@ package test.andy.tubeswisata;
 import test.andy.tubeswisata.model.FeedItem;
 import test.andy.tubeswisata.model.wisata;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 
 public class AdapterWisataUser extends BaseAdapter {
@@ -79,37 +82,17 @@ public class AdapterWisataUser extends BaseAdapter {
         tv_deskripsi.setText(item.getDeskripsi());
         tv_latlong.setText(item.getLnglat());
 
-//        // Checking for null feed url
-//        if (item.getUrl() != null) {
-//            url.setText(Html.fromHtml("<a href=\"" + item.getUrl() + "\">"
-//                    + item.getUrl() + "</a> "));
-//
-//            // Making url clickable
-//            url.setMovementMethod(LinkMovementMethod.getInstance());
-//            url.setVisibility(View.VISIBLE);
-//        } else {
-//            // url is null, remove from the view
-//            url.setVisibility(View.GONE);
-//        }
 
+        String url = activity.getString(R.string.api_scheme)+"://"+
+                activity.getString(R.string.api_host)+"/"+
+                "image";
 
-        // Feed image
-//        if (item.getImge() != null) {
-//            feedImageView.setImageUrl(item.getImge(), imageLoader);
-//            feedImageView.setVisibility(View.VISIBLE);
-//            feedImageView
-//                    .setResponseObserver(new FeedImageView.ResponseObserver() {
-//                        @Override
-//                        public void onError() {
-//                        }
-//
-//                        @Override
-//                        public void onSuccess() {
-//                        }
-//                    });
-//        } else {
-//            feedImageView.setVisibility(View.GONE);
-//        }
+        Picasso.with(activity)
+                .load(url + "/" + item.getFoto())
+                .fit()
+                .placeholder(R.drawable.ic_no_image)
+                .into(imgv_foto);
+
 
         return convertView;
     }
