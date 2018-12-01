@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TubesWisata</string>
+    <string name="wisata_malang">Wisata Malang</string>
+    <string name="start">Start</string>
+    <string name="admin">Admin</string>
+    <string name="todo">TODO</string>
+</resources>
