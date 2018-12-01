@@ -4,13 +4,9 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.facebook.stetho.okhttp3.StethoInterceptor;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import barcode.checklist.com.checklist.R;
-import barcode.checklist.com.checklist.util.Util;
 import okhttp3.Authenticator;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -21,10 +17,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.Route;
-import okhttp3.logging.HttpLoggingInterceptor;
 import okio.Buffer;
-
-import static barcode.checklist.com.checklist.util.Constant.PREFS_IS_USER_TOKEN;
+import test.andy.tubeswisata.R;
 
 
 /**
@@ -53,21 +47,6 @@ public class Api {
         return ApiHost;
     }
 
-    public Api setApiHost(String apiHost) {
-        ApiHost = apiHost;
-        httpUrlBuilder = new HttpUrl.Builder()
-                .scheme(context.getString(R.string.api_scheme))
-                .host("api.aladhan.com")
-                .addPathSegments("v1/timings");
-
-
-        httpUrl = httpUrlBuilder.build();
-        request = new Request.Builder()
-                .url( httpUrl.toString())
-                .build();
-        return this;
-    }
-
     private String ApiHost="localhost";
 
     public String getApi_segment() {
@@ -84,7 +63,6 @@ public class Api {
     private HttpUrl httpUrl;
     private HttpUrl.Builder httpUrlBuilder;
     private Request request;
-    private HttpLoggingInterceptor httpLoggingInterceptor;
     private OkHttpClient okHttpClient;
     private OkHttpClient.Builder okHttpClientBuilder;
 
@@ -93,8 +71,8 @@ public class Api {
 
         httpUrlBuilder = new HttpUrl.Builder()
                 .scheme(context.getString(R.string.api_scheme))
-                .host(context.getString(R.string.api_host));
-//                .addPathSegment(context.getString(R.string.api_segment));
+                .host(context.getString(R.string.api_host))
+                .addPathSegment(context.getString(R.string.api_segment));
 
 
 
@@ -102,55 +80,13 @@ public class Api {
         request = new Request.Builder()
                 .url(httpUrl.toString())
                 .build();
-        httpLoggingInterceptor = new HttpLoggingInterceptor(message -> Log.d(TAG, message)).setLevel(HttpLoggingInterceptor.Level.BODY);
 
         okHttpClientBuilder = new OkHttpClient.Builder()
-                .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(httpLoggingInterceptor)
                 .connectTimeout(getTimeOut(), TimeUnit.SECONDS);
 
         okHttpClient = okHttpClientBuilder.build();
     }
 
-    public Api(Context context, boolean isPrayApi) {
-        this.context = context;
-
-        httpUrlBuilder = new HttpUrl.Builder()
-                .scheme(context.getString(R.string.api_scheme))
-                .host("time.siswadi.com")
-                .addPathSegments("pray");
-
-        httpUrl = httpUrlBuilder.build();
-        request = new Request.Builder()
-                .url(httpUrl.toString())
-                .build();
-        httpLoggingInterceptor = new HttpLoggingInterceptor(message -> Log.d(TAG, message)).setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        okHttpClientBuilder = new OkHttpClient.Builder()
-                .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(httpLoggingInterceptor)
-                .connectTimeout(getTimeOut(), TimeUnit.SECONDS);
-
-        okHttpClient = okHttpClientBuilder.build();
-    }
-
-    public Api(Context context, HttpUrl.Builder httpUrlBuilder) {
-        this.context = context;
-        this.httpUrlBuilder = httpUrlBuilder;
-        httpUrl = httpUrlBuilder.build();
-        request = new Request.Builder()
-                .addHeader("Authorization", Util.getSharedPreferenceString(context, PREFS_IS_USER_TOKEN, ""))
-                .url(httpUrl.toString())
-                .build();
-        httpLoggingInterceptor = new HttpLoggingInterceptor(message -> Log.d(TAG, message)).setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        okHttpClientBuilder = new OkHttpClient.Builder()
-                .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(httpLoggingInterceptor)
-                .connectTimeout(getTimeOut(), TimeUnit.SECONDS);
-
-        okHttpClient = okHttpClientBuilder.build();
-    }
 
     public Context getContext() {
         return context;
@@ -174,7 +110,6 @@ public class Api {
         }
 
         Request deleteRequest = request.newBuilder()
-            .addHeader("Authorization", Util.getSharedPreferenceString(context, PREFS_IS_USER_TOKEN, ""))
                 .url(fullUrl)
                 .delete(requestBody)
                 .build();
@@ -231,7 +166,6 @@ public class Api {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(getTimeOut(), TimeUnit.SECONDS)
-                .addNetworkInterceptor(new StethoInterceptor())
                 .build();
 
         Request request = new Request.Builder()
@@ -291,7 +225,6 @@ public class Api {
                 .build().toString();
 
         Request getRequest = request.newBuilder()
-                .addHeader("Authorization", Util.getSharedPreferenceString(context, PREFS_IS_USER_TOKEN, ""))
                 .url(fullUrl)
                 .get()
                 .build();
@@ -336,7 +269,6 @@ public class Api {
         }
 
         Request postRequest = request.newBuilder()
-                .addHeader("Authorization", Util.getSharedPreferenceString(context, PREFS_IS_USER_TOKEN, ""))
                 .url(fullUrl)
                 .post(requestBody)
                 .build();
@@ -385,7 +317,6 @@ public class Api {
         }
 
         Request putRequest = request.newBuilder()
-                .addHeader("Authorization", Util.getSharedPreferenceString(context, PREFS_IS_USER_TOKEN, ""))
                 .url(fullUrl)
                 .put(requestBody)
                 .build();

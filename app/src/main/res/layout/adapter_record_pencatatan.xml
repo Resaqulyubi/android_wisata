@@ -43,61 +43,45 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:layout_alignParentLeft="true"
-                    android:layout_toLeftOf="@+id/tv_unit"
+                    android:layout_toLeftOf="@+id/tv_kategori"
                     android:id="@+id/tv_nama"
                     />
                 <TextView
                     android:padding="1dp"
                     android:layout_width="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="UNIT 1"
-                    android:visibility="gone"
+                    android:text="alam"
+                    android:visibility="visible"
                     android:layout_height="wrap_content"
 
-                    android:id="@+id/tv_unit"
+                    android:id="@+id/tv_kategori"
                     />
             </RelativeLayout>
-
-
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12"
+                android:text="ini adalah bla bla"
                 android:padding="1.2dp"
-                android:id="@+id/tv_input"
+                android:id="@+id/tv_deskripsi"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/tv_batas_atas"
+                android:text="12312.12312"
+                android:id="@+id/tv_latlong"
                 />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:gravity="left"
-                    android:layout_alignParentLeft="true"
-                    android:layout_toLeftOf="@+id/tv_time"
-                    android:id="@+id/tv_batas_bawah"
-                    />
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:text="12312.12312"
+                android:id="@+id/imgv_foto"
+                />
 
-
-                <TextView
-
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_time"
-                    />
-
-            </RelativeLayout>
 
         </LinearLayout>
 

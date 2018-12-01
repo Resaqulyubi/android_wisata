@@ -4,4 +4,11 @@
     <string name="start">Start</string>
     <string name="admin">Admin</string>
     <string name="todo">TODO</string>
+
+
+    <string name="api_wisata">Wisata_api</string>
+    <string name="api_user">User_api</string>
+    <string name="api_scheme">https</string>
+    <string name="api_host">wisata-malang-qulbs.c9users.io</string>
+    <string name="api_segment">index.php</string>
 </resources>

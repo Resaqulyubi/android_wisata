@@ -1,7 +1,9 @@
 package test.andy.tubeswisata;
 
 import test.andy.tubeswisata.model.FeedItem;
+import test.andy.tubeswisata.model.wisata;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -14,18 +16,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class FeedListAdapter extends BaseAdapter {
+public class AdapterWisataUser extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
-    private List<FeedItem> feedItems;
+    private List<wisata.Data> feedItems= new ArrayList<>();;
   ;
 
-    public FeedListAdapter(Activity activity, List<FeedItem> feedItems) {
+    public AdapterWisataUser(Activity activity, List<wisata.Data> feedItems) {
         this.activity = activity;
         this.feedItems = feedItems;
+    }
+
+    public AdapterWisataUser(Activity activity) {
+        this.activity = activity;
+
+    }
+
+    public void setFeedItems(List<wisata.Data> feedItems) {
+        this.feedItems = feedItems;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -53,44 +66,31 @@ public class FeedListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.feed_layout, null);
 
 
-        TextView name = (TextView) convertView.findViewById(R.id.name);
-        TextView timestamp = (TextView) convertView
-                .findViewById(R.id.timestamp);
-        TextView statusMsg = (TextView) convertView
-                .findViewById(R.id.txtStatusMsg);
-        TextView url = (TextView) convertView.findViewById(R.id.txtUrl);
+        TextView tv_nama =  convertView.findViewById(R.id.tv_nama);
+        TextView tv_kategori = convertView.findViewById(R.id.tv_kategori);
+        TextView tv_deskripsi = convertView.findViewById(R.id.tv_deskripsi);
+        TextView tv_latlong = convertView.findViewById(R.id.tv_latlong);
+        ImageView imgv_foto = convertView.findViewById(R.id.imgv_foto);
 
-        FeedItem item = feedItems.get(position);
+        wisata.Data item = feedItems.get(position);
 
-        name.setText(item.getName());
+        tv_nama.setText(item.getNama());
+        tv_kategori.setText(item.getKategori());
+        tv_deskripsi.setText(item.getDeskripsi());
+        tv_latlong.setText(item.getLnglat());
 
-        // Converting timestamp into x ago format
-        CharSequence timeAgo = DateUtils.getRelativeTimeSpanString(
-                Long.parseLong(item.getTimeStamp()),
-                System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
-        timestamp.setText(timeAgo);
-
-        // Chcek for empty status message
-        if (!TextUtils.isEmpty(item.getStatus())) {
-            statusMsg.setText(item.getStatus());
-            statusMsg.setVisibility(View.VISIBLE);
-        } else {
-            // status is empty, remove from view
-            statusMsg.setVisibility(View.GONE);
-        }
-
-        // Checking for null feed url
-        if (item.getUrl() != null) {
-            url.setText(Html.fromHtml("<a href=\"" + item.getUrl() + "\">"
-                    + item.getUrl() + "</a> "));
-
-            // Making url clickable
-            url.setMovementMethod(LinkMovementMethod.getInstance());
-            url.setVisibility(View.VISIBLE);
-        } else {
-            // url is null, remove from the view
-            url.setVisibility(View.GONE);
-        }
+//        // Checking for null feed url
+//        if (item.getUrl() != null) {
+//            url.setText(Html.fromHtml("<a href=\"" + item.getUrl() + "\">"
+//                    + item.getUrl() + "</a> "));
+//
+//            // Making url clickable
+//            url.setMovementMethod(LinkMovementMethod.getInstance());
+//            url.setVisibility(View.VISIBLE);
+//        } else {
+//            // url is null, remove from the view
+//            url.setVisibility(View.GONE);
+//        }
 
 
         // Feed image

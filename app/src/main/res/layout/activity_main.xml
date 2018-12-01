@@ -31,7 +31,7 @@
         android:id="@+id/btnstart"
         android:layout_width="175dp"
         android:layout_height="32dp"
-        android:layout_alignStart="@+id/btnstart1"
+        android:layout_alignStart="@+id/btnstartadmin"
         android:layout_marginStart="-1dp"
         android:layout_marginTop="400dp"
         android:background="@color/colorAccent"
@@ -40,7 +40,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btnstart1"
+        android:id="@+id/btnstartadmin"
         android:layout_width="175dp"
         android:layout_height="32dp"
         android:layout_centerHorizontal="true"
