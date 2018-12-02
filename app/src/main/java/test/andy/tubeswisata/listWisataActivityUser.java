@@ -1,14 +1,12 @@
 package test.andy.tubeswisata;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,14 +20,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import okhttp3.HttpUrl;
 import okhttp3.Response;
 import test.andy.tubeswisata.model.wisata;
 import test.andy.tubeswisata.network.Api;
 
-public class MainActivity extends Activity {
-    private AdapterWisataUser adapter;
-    private MainActivity obj;
+public class listWisataActivityUser extends Activity {
+    private AdapterWisata adapter;
+    private listWisataActivityUser obj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +35,15 @@ public class MainActivity extends Activity {
         ListView lsvw_data=findViewById(R.id.id_list);
         obj=this;
 
-        adapter=new AdapterWisataUser(this);
+        adapter=new AdapterWisata(this);
         lsvw_data.setAdapter(adapter);
 
         lsvw_data.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                adapter.getItem(position);
+
+                startActivity(new Intent(listWisataActivityUser.this, MapsActivtiy.class).putExtra("lnglat",adapter.getItem(position).getLnglat()));
+
             }
 
         });
@@ -57,7 +56,7 @@ public class MainActivity extends Activity {
             Date dStart = null;
             Date dEnd = null;
 
-            ProgressDialog dialog =new ProgressDialog(MainActivity.this);
+            ProgressDialog dialog =new ProgressDialog(listWisataActivityUser.this);
 
             @Override
             protected void onPreExecute() {
@@ -79,7 +78,7 @@ public class MainActivity extends Activity {
                 boolean b=false;
 
 
-                try (Response response = new Api(MainActivity.this).
+                try (Response response = new Api(listWisataActivityUser.this).
                         get(getString(R.string.api_wisata))) {
                     if (response == null || !response.isSuccessful())
                         throw new IOException("Unexpected code = " + response);
@@ -91,7 +90,7 @@ public class MainActivity extends Activity {
 
                     if (responseBodyObject.getBoolean("status")) {
                         Gson gson = new Gson();
-                        wisata fromJson = gson.fromJson(responseBodyString, wisata.class);
+                            wisata fromJson = gson.fromJson(responseBodyString, wisata.class);
 
                         for (int x = 0; x < fromJson.getData().size(); x++) {
 
@@ -103,14 +102,14 @@ public class MainActivity extends Activity {
                         obj.runOnUiThread(new Runnable() {
 
                             public void run() {
-                                adapter.setFeedItems(data);
+                                adapter.setList(data);
 
                             }
                         });
                     }else {
                         obj.runOnUiThread(new Runnable() {
                             public void run() {
-                                adapter.setFeedItems(data);
+                                adapter.setList(data);
                                 Toast.makeText(obj, "Tidak Ada data", Toast.LENGTH_SHORT).show();
                             }
                         });

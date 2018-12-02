@@ -18,7 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,9 +29,9 @@ import test.andy.tubeswisata.model.wisata;
 import test.andy.tubeswisata.network.Api;
 import test.andy.tubeswisata.util.Util;
 
-public class listWisataAdminActivity extends AppCompatActivity {
-    private listWisataAdminActivity obj;
-    private AdapterWisataAdmin adapter;
+public class listWisataActivityAdmin extends AppCompatActivity {
+    private listWisataActivityAdmin obj;
+    private AdapterWisata adapter;
 
 
     @Override
@@ -45,7 +44,7 @@ public class listWisataAdminActivity extends AppCompatActivity {
         obj = this;
 
 
-        adapter=new AdapterWisataAdmin(this);
+        adapter=new AdapterWisata(this);
         lsvw_data.setAdapter(adapter);
 
 
@@ -56,11 +55,11 @@ public class listWisataAdminActivity extends AppCompatActivity {
                 showDialogListOpsi(j -> {
                     if (j == 0) {
                         adapter.getItem(position);
-                        AlertDialog.Builder builder = new AlertDialog.Builder(listWisataAdminActivity.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(listWisataActivityAdmin.this);
                         builder.setMessage("item akan dihapus Lanjutkan?");
                         builder.setPositiveButton("YA", (dialogInterface, i) -> {
 //                            solve(adapter.getItem(position).getId());
-//                            Toast.makeText(listWisataAdminActivity.this, "Berhasil disimpan", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(listWisataActivityAdmin.this, "Berhasil disimpan", Toast.LENGTH_SHORT).show();
                         });
                         builder.setNegativeButton("TIDAK", (dialogInterface, i) -> {
                         });
@@ -68,7 +67,7 @@ public class listWisataAdminActivity extends AppCompatActivity {
                         dialog.show();
 
                     }
-                }, listWisataAdminActivity.this);
+                }, listWisataActivityAdmin.this);
 
             }
 
@@ -87,7 +86,7 @@ public class listWisataAdminActivity extends AppCompatActivity {
 //            https://www.studytutorial.in/android-line-chart-or-line-graph-using-mpandroid-library-tutorial
 //            List<TransactionDB> transactions = new ArrayList<>();
 
-            ProgressDialog dialog =new ProgressDialog(listWisataAdminActivity.this);
+            ProgressDialog dialog =new ProgressDialog(listWisataActivityAdmin.this);
 
             @Override
             protected void onPreExecute() {
@@ -111,7 +110,7 @@ public class listWisataAdminActivity extends AppCompatActivity {
 
                 HttpUrl.Builder httpUrlBuilder = new HttpUrl.Builder();
 
-                try (Response response = new Api(listWisataAdminActivity.this).
+                try (Response response = new Api(listWisataActivityAdmin.this).
                         get(getString(R.string.api_wisata))) {
                     if (response == null || !response.isSuccessful())
                         throw new IOException("Unexpected code = " + response);

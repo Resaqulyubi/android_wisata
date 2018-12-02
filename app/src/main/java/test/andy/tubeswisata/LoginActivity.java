@@ -14,7 +14,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.Response;
 import test.andy.tubeswisata.network.Api;
@@ -83,7 +82,7 @@ public class LoginActivity extends Activity {
                                 if (dialog!=null&dialog.isShowing()){
                                     dialog.dismiss();
                                 }
-                                startActivity(new Intent(LoginActivity.this, listWisataAdminActivity.class));
+                                startActivity(new Intent(LoginActivity.this, listWisataActivityAdmin.class));
 
                             }
                         });

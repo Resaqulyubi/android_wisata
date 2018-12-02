@@ -29,8 +29,8 @@ public class Api {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
     private static final String TAG = "Api";
-    private long timeOut = 15;
-    private long defaultTimeOut = 15;
+    private long timeOut = 25;
+    private long defaultTimeOut = 25;
     private String defaultApiHost="";
     private static Api api = null;
 

@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".listWisataActivityUser">
 
         </activity>
 
@@ -29,7 +29,11 @@
         <activity android:name=".LoginActivity">
 
         </activity>
-        <activity android:name=".listWisataAdminActivity">
+        <activity android:name=".listWisataActivityAdmin">
+
+        </activity>
+
+        <activity android:name=".MapsActivtiy">
 
         </activity>
     </application>
