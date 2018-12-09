@@ -3,15 +3,17 @@ package test.andy.tubeswisata;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -24,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.Response;
@@ -32,9 +33,13 @@ import test.andy.tubeswisata.model.wisata;
 import test.andy.tubeswisata.network.Api;
 import test.andy.tubeswisata.util.Util;
 
-public class listWisataActivityAdmin extends AppCompatActivity {
-    private listWisataActivityAdmin obj;
+public class TambahWisata extends AppCompatActivity {
+    private TambahWisata obj;
     private AdapterWisata adapter;
+    private EditText et_nama,et_lat ,et_long ,et_desk;
+   private Button btn_simpan;
+private Spinner sp_kategori;
+
 
 
     @Override
@@ -42,46 +47,39 @@ public class listWisataActivityAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wisata);
 
-        ListView lsvw_data=findViewById(R.id.id_list);
-        Button btn_tambah=findViewById(R.id.btn_tambah);
+
+         et_nama=findViewById(R.id.et_nama);
+        et_lat=findViewById(R.id.et_lat);
+        et_long=findViewById(R.id.et_long);
+        et_desk=findViewById(R.id.et_desk);
+        sp_kategori=findViewById(R.id.sp_kategori);
+        btn_simpan=findViewById(R.id.btn_simpan);
+
+
+
+        String[] arraySpinner = new String[] {"Alam", "Buatan"};
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_kategori.setAdapter(arrayAdapter);
+
 
         obj = this;
-
-
         adapter=new AdapterWisata(this);
-        lsvw_data.setAdapter(adapter);
 
+       btn_simpan.setOnClickListener(view -> {
+           if (et_nama.getText().toString().isEmpty()||
+                   et_lat.getText().toString().isEmpty()||
+                   et_long.getText().toString().isEmpty()||
+                   et_desk.getText().toString().isEmpty()||
+                   sp_kategori.getSelectedItem().toString().isEmpty()){
+               Toast.makeText(obj, "Tidak boleh kosong", Toast.LENGTH_SHORT).show();
+           }else {
+               simpan(et_nama.toString(),et_lat.toString(),et_long.toString(),et_desk.toString(),sp_kategori.getSelectedItem().toString());
+           }
 
-        lsvw_data.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+       });
 
-                showDialogListOpsi(j -> {
-                    if (j == 0) {
-                        adapter.getItem(position);
-                        AlertDialog.Builder builder = new AlertDialog.Builder(listWisataActivityAdmin.this);
-                        builder.setMessage("item akan dihapus Lanjutkan?");
-                        builder.setPositiveButton("YA", (dialogInterface, i) -> {
-                            delete(adapter.getItem(position).getId());
-                        });
-                        builder.setNegativeButton("TIDAK", (dialogInterface, i) -> {
-                        });
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-
-                    }
-                }, listWisataActivityAdmin.this);
-
-            }
-
-        });
-
-
-        btn_tambah.setOnClickListener(view -> {
-            startActivity(new Intent(this, TambahWisata.class));
-        });
-
-        getRecord();
     }
 
 
@@ -94,7 +92,7 @@ public class listWisataActivityAdmin extends AppCompatActivity {
 //            https://www.studytutorial.in/android-line-chart-or-line-graph-using-mpandroid-library-tutorial
 //            List<TransactionDB> transactions = new ArrayList<>();
 
-            ProgressDialog dialog =new ProgressDialog(listWisataActivityAdmin.this);
+            ProgressDialog dialog =new ProgressDialog(TambahWisata.this);
 
             @Override
             protected void onPreExecute() {
@@ -118,7 +116,7 @@ public class listWisataActivityAdmin extends AppCompatActivity {
 
                 HttpUrl.Builder httpUrlBuilder = new HttpUrl.Builder();
 
-                try (Response response = new Api(listWisataActivityAdmin.this).
+                try (Response response = new Api(TambahWisata.this).
                         get(getString(R.string.api_wisata))) {
                     if (response == null || !response.isSuccessful())
                         throw new IOException("Unexpected code = " + response);
@@ -187,11 +185,11 @@ public class listWisataActivityAdmin extends AppCompatActivity {
 
     }
 
-    public boolean delete(String id) {
+    public boolean simpan(String nama,String lati,String longt, String desk, String kategori) {
         boolean[] a = {false};
 
         new AsyncTask<Void, Void, Boolean>() {
-            ProgressDialog dialog =new ProgressDialog(listWisataActivityAdmin.this);
+            ProgressDialog dialog =new ProgressDialog(TambahWisata.this);
 
             @Override
             protected void onPreExecute() {
@@ -209,9 +207,13 @@ public class listWisataActivityAdmin extends AppCompatActivity {
             protected Boolean doInBackground(Void... voids) {
                 boolean b=false;
                 FormBody.Builder formBody = new FormBody.Builder()
-                        .add("id", id)
-                        .add("action", "DELETE");
-                try (Response response = new Api(listWisataActivityAdmin.this).
+                        .add("nama", nama)
+                        .add("lnglat", longt+","+lati)
+                        .add("deskripsi", desk)
+                        .add("foto", "")
+                        .add("kategori", kategori)
+                        .add("action", "POST");
+                try (Response response = new Api(TambahWisata.this).
                         post(getString(R.string.api_wisata),formBody)) {
                     if (response == null || !response.isSuccessful())
                         throw new IOException("Unexpected code = " + response);
@@ -227,7 +229,7 @@ public class listWisataActivityAdmin extends AppCompatActivity {
                                 }
 
 
-                                Toast.makeText(obj, "Berhasil di hapus", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(obj, "Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
                                 getRecord();
 
                             }
@@ -277,7 +279,7 @@ public class listWisataActivityAdmin extends AppCompatActivity {
     }
 
     public void showDialogListOpsi(ListenerDialog listener, Context context) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context, R.style.Theme_Dialog_Margin_4);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.Theme_Dialog_Margin_4);
         List<String> where = new ArrayList<String>();
 
         where.add("Hapus");
@@ -295,7 +297,7 @@ public class listWisataActivityAdmin extends AppCompatActivity {
             }
         });
 
-        android.app.AlertDialog alertDialog = builder.create();
+        AlertDialog alertDialog = builder.create();
         alertDialog.show();
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(alertDialog.getWindow().getAttributes());

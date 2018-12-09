@@ -29,6 +29,10 @@ public class wisata {
     public class Data{
         private String id="";
         private String nama="";
+        private String lnglat="";
+        private String deskripsi="";
+        private String foto="";
+        private String kategori="";
 
         public String getId() {
             return id;
@@ -78,10 +82,7 @@ public class wisata {
             this.kategori = kategori;
         }
 
-        private String lnglat="";
-        private String deskripsi="";
-        private String foto="";
-        private String kategori="";
+
 
 
 
