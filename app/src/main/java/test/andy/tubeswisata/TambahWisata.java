@@ -1,8 +1,10 @@
 package test.andy.tubeswisata;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +47,7 @@ private Spinner sp_kategori;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wisata);
+        setContentView(R.layout.activity_tambah_wisata);
 
 
          et_nama=findViewById(R.id.et_nama);
@@ -75,7 +77,7 @@ private Spinner sp_kategori;
                    sp_kategori.getSelectedItem().toString().isEmpty()){
                Toast.makeText(obj, "Tidak boleh kosong", Toast.LENGTH_SHORT).show();
            }else {
-               simpan(et_nama.toString(),et_lat.toString(),et_long.toString(),et_desk.toString(),sp_kategori.getSelectedItem().toString());
+               simpan(et_nama.getText().toString(),et_lat.getText().toString(),et_long.getText().toString(),et_desk.getText().toString(),sp_kategori.getSelectedItem().toString());
            }
 
        });
@@ -230,7 +232,9 @@ private Spinner sp_kategori;
 
 
                                 Toast.makeText(obj, "Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                getRecord();
+                                Intent returnIntent = new Intent();
+                                setResult(Activity.RESULT_OK,returnIntent);
+                                finish();
 
                             }
                         });

@@ -75,6 +75,7 @@ public class AdapterWisata extends BaseAdapter {
 
         String url = mContext.getString(R.string.api_scheme)+"://"+
                 mContext.getString(R.string.api_host)+"/"+
+                mContext.getString(R.string.api_segment1)+"/"+
                 "image";
 
         Picasso.with(mContext)

@@ -1,5 +1,6 @@
 package test.andy.tubeswisata;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -79,13 +80,24 @@ public class listWisataActivityAdmin extends AppCompatActivity {
 
 
         btn_tambah.setOnClickListener(view -> {
-            startActivity(new Intent(this, TambahWisata.class));
+            startActivityForResult(new Intent(this, TambahWisata.class),1);
         });
 
         getRecord();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                getRecord();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+
+            }
+        }
+    }
 
     public boolean getRecord() {
         boolean[] a = {false};
