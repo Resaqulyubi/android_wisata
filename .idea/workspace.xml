@@ -16,15 +16,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0851cefd-55ee-4d93-b193-7ede18813042" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/listWisataActivityAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/listWisataActivityAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/model/wisata.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/model/wisata.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_wisata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_wisata.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/network/Api.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/network/Api.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bingandroid/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/bingandroid/build.gradle" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -82,8 +76,21 @@
           <file leaf-file-name="PushpinCreator.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/bingandroid/src/main/java/com/snail/bingandroid/util/PushpinCreator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+                <state relative-caret-position="99">
+                  <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Api.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/network/Api.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="188">
+                  <caret line="73" column="55" selection-start-line="73" selection-start-column="55" selection-end-line="73" selection-end-column="55" />
+                  <folding>
+                    <element signature="e#1921#1961#0" expanded="true" />
+                    <element signature="e#1921#1960#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -97,36 +104,28 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="BingMap.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bingandroid/src/main/java/com/snail/bingandroid/BingMap.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="41" selection-start-line="41" selection-end-line="41" />
-                  <folding>
-                    <element signature="e#1550#1551#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="listWisataActivityUser.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/listWisataActivityUser.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="51" selection-start-line="51" selection-end-line="51" />
+                <state relative-caret-position="85">
+                  <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
+                  <folding>
+                    <element signature="e#1975#1976#0" expanded="true" />
+                    <element signature="e#2036#2037#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file leaf-file-name="activity_tambah_wisata.xml" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tambah_wisata.xml">
-              <provider editor-type-id="android-designer2">
-                <state />
-              </provider>
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="561">
                   <caret line="33" column="36" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="36" />
                 </state>
+              </provider>
+              <provider editor-type-id="android-designer2">
+                <state />
               </provider>
             </entry>
           </file>
@@ -134,7 +133,7 @@
             <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/TambahWisata.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="289">
-                  <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+                  <caret line="48" selection-start-line="48" selection-end-line="48" />
                 </state>
               </provider>
             </entry>
@@ -142,8 +141,8 @@
           <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+                <state relative-caret-position="89">
+                  <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
                 </state>
               </provider>
             </entry>
@@ -154,13 +153,13 @@
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="feed_layout.xml" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/feed_layout.xml">
-              <provider editor-type-id="android-designer2">
-                <state />
-              </provider>
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="1122">
                   <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
                 </state>
+              </provider>
+              <provider editor-type-id="android-designer2">
+                <state />
               </provider>
             </entry>
           </file>
@@ -175,13 +174,13 @@
           </file>
           <file leaf-file-name="activity_wisata.xml" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_wisata.xml">
-              <provider editor-type-id="android-designer2">
-                <state />
-              </provider>
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="170">
                   <caret line="10" column="28" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="35" />
                 </state>
+              </provider>
+              <provider editor-type-id="android-designer2">
+                <state />
               </provider>
             </entry>
           </file>
@@ -239,7 +238,7 @@
           <file leaf-file-name="wisata.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/model/wisata.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
+                <state relative-caret-position="34">
                   <caret line="34" column="31" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="31" />
                 </state>
               </provider>
@@ -264,6 +263,8 @@
       <find>imgv_foto</find>
       <find>timeou</find>
       <find>SECOND</find>
+      <find>obj</find>
+      <find>api_segment</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -3581,7 +3582,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/listWisataActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/listWisataActivityUser.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/network/Api.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/MapsActivtiy.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/model/wisata.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
@@ -3591,6 +3591,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_wisata.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/listWisataActivityAdmin.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/TambahWisata.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/network/Api.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       </list>
     </option>
@@ -3610,6 +3611,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -3620,11 +3622,6 @@
             <path>
               <item name="android_wisata" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
-            </path>
-            <path>
-              <item name="android_wisata" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
             </path>
             <path>
@@ -3632,13 +3629,6 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="tubeswisata" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="android_wisata" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="tubeswisata" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="android_wisata" type="1abcf292:AndroidViewProjectNode" />
@@ -3659,7 +3649,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="ProjectPane" />
     </panes>
   </component>
@@ -3668,9 +3657,9 @@
     <property name="DEBUGGABLE_PROCESS" value="test.andy.tubeswisata" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="string&#9;FILE&#9;file://D:/Workspace/Android/android_wisata/app/src/main/res/values/strings.xml&#10;maps&#9;FILE&#9;file://D:/Workspace/Android/android_wisata/app/src/main/java/test/andy/tubeswisata/MapsActivtiy.java&#10;login&#9;FILE&#9;file://D:/Workspace/Android/android_wisata/app/src/main/java/test/andy/tubeswisata/LoginActivity.java" />
+    <property name="SearchEverywhereHistoryKey" value="api&#9;FILE&#9;file://D:/Workspace/Android/android_wisata/app/src/main/java/test/andy/tubeswisata/network/Api.java&#10;string&#9;FILE&#9;file://D:/Workspace/Android/android_wisata/app/src/main/res/values/strings.xml&#10;maps&#9;FILE&#9;file://D:/Workspace/Android/android_wisata/app/src/main/java/test/andy/tubeswisata/MapsActivtiy.java&#10;login&#9;FILE&#9;file://D:/Workspace/Android/android_wisata/app/src/main/java/test/andy/tubeswisata/LoginActivity.java" />
     <property name="android.sdk.path" value="$PROJECT_DIR$/../sdk" />
-    <property name="device.picker.selection" value="3100ed722e2fb300" />
+    <property name="device.picker.selection" value="10.1_WXGA_Tablet_API_22" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../BingMapAndroid-master/bingandroid" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
@@ -3814,7 +3803,7 @@
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" weight="0.3286908" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" weight="0.3286908" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
@@ -3824,11 +3813,11 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="7" weight="0.7841226" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="7" visible="true" weight="0.53064066" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23959732" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23959732" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.0" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -4007,13 +3996,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="39" column="35" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/test/andy/tubeswisata/R.java">
@@ -4024,13 +4013,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_loginadmin.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/../backup/sdk/platforms/android-28/android.jar!/android/widget/ListView.class">
@@ -4053,13 +4042,13 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/AdapterWisataUser1.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/adapter_record_pencatatan.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/LoginActivity.java">
@@ -4073,13 +4062,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="392" column="16" selection-start-line="392" selection-start-column="16" selection-end-line="392" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/network/Api.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>
@@ -4111,13 +4093,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bingandroid/src/main/java/com/snail/bingandroid/util/PushpinCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -4153,13 +4128,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/feed_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1122">
           <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
@@ -4173,13 +4148,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="20" selection-start-column="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/listWisataActivityUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
         </state>
       </provider>
     </entry>
@@ -4208,13 +4176,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_wisata.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="28" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="35" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/listWisataActivityAdmin.java">
@@ -4228,18 +4196,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tambah_wisata.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="33" column="36" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="36" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/model/wisata.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="34">
           <caret line="34" column="31" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="31" />
         </state>
       </provider>
@@ -4247,14 +4215,43 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/TambahWisata.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/listWisataActivityUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
+          <folding>
+            <element signature="e#1975#1976#0" expanded="true" />
+            <element signature="e#2036#2037#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bingandroid/src/main/java/com/snail/bingandroid/util/PushpinCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/test/andy/tubeswisata/network/Api.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="73" column="55" selection-start-line="73" selection-start-column="55" selection-end-line="73" selection-end-column="55" />
+          <folding>
+            <element signature="e#1921#1961#0" expanded="true" />
+            <element signature="e#1921#1960#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        <state relative-caret-position="89">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
         </state>
       </provider>
     </entry>

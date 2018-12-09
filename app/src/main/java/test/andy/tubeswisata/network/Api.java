@@ -72,6 +72,7 @@ public class Api {
         httpUrlBuilder = new HttpUrl.Builder()
                 .scheme(context.getString(R.string.api_scheme))
                 .host(context.getString(R.string.api_host))
+                .addPathSegment(context.getString(R.string.api_segment1))
                 .addPathSegment(context.getString(R.string.api_segment));
 
 

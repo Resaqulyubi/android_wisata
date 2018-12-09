@@ -48,6 +48,7 @@ public class listWisataActivityAdmin extends AppCompatActivity {
         obj = this;
 
 
+        btn_tambah.setVisibility(View.VISIBLE);
         adapter=new AdapterWisata(this);
         lsvw_data.setAdapter(adapter);
 
