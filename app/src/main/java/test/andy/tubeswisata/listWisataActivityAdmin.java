@@ -61,6 +61,18 @@ public class listWisataActivityAdmin extends AppCompatActivity {
                 showDialogListOpsi(j -> {
                     if (j == 0) {
                         adapter.getItem(position);
+
+                        startActivityForResult(new Intent(listWisataActivityAdmin.this, TambahWisata.class)
+                                .putExtra("id",adapter.getItem(position).getId())
+                                .putExtra("nama",adapter.getItem(position).getNama())
+                                .putExtra("lnglat",adapter.getItem(position).getLnglat())
+                                .putExtra("deskripsi",adapter.getItem(position).getDeskripsi())
+                                .putExtra("foto",adapter.getItem(position).getFoto())
+                                .putExtra("kategori",adapter.getItem(position).getKategori()),
+                                1);
+
+                    }else if (j == 1) {
+                        adapter.getItem(position);
                         AlertDialog.Builder builder = new AlertDialog.Builder(listWisataActivityAdmin.this);
                         builder.setMessage("item akan dihapus Lanjutkan?");
                         builder.setPositiveButton("YA", (dialogInterface, i) -> {
@@ -293,6 +305,7 @@ public class listWisataActivityAdmin extends AppCompatActivity {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context, R.style.Theme_Dialog_Margin_4);
         List<String> where = new ArrayList<String>();
 
+        where.add("Edit");
         where.add("Hapus");
 
         String[] strings = new String[where.size()];
@@ -303,6 +316,10 @@ public class listWisataActivityAdmin extends AppCompatActivity {
                 case 0:
                     listener.onClick(0);
                     break;
+                case 1:
+                    listener.onClick(1);
+                    break;
+
                 default:
                     listener.onClick(which);
             }

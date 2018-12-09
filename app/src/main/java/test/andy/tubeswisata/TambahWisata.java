@@ -59,6 +59,16 @@ private Spinner sp_kategori;
 
 
 
+        if (getIntent().getStringExtra("id")!=null){
+         ;
+            et_nama.setText(getIntent().getStringExtra("nama"));
+            et_desk.setText(getIntent().getStringExtra("deskripsi"));
+          String[] lnglat=  getIntent().getStringExtra("lnglat").split(",");
+            et_long.setText(lnglat[0]);
+            et_lat.setText(lnglat[1]);
+
+        }
+
         String[] arraySpinner = new String[] {"Alam", "Buatan"};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, arraySpinner);
@@ -77,116 +87,19 @@ private Spinner sp_kategori;
                    sp_kategori.getSelectedItem().toString().isEmpty()){
                Toast.makeText(obj, "Tidak boleh kosong", Toast.LENGTH_SHORT).show();
            }else {
-               simpan(et_nama.getText().toString(),et_lat.getText().toString(),et_long.getText().toString(),et_desk.getText().toString(),sp_kategori.getSelectedItem().toString());
+
+               if (getIntent().getStringExtra("id")!=null&&!getIntent().getStringExtra("id").isEmpty()){
+                   update(getIntent().getStringExtra("id"),et_nama.getText().toString(),et_lat.getText().toString(),et_long.getText().toString(),et_desk.getText().toString(),sp_kategori.getSelectedItem().toString(),getIntent().getStringExtra("foto"));
+               }else {
+                   simpan(et_nama.getText().toString(),et_lat.getText().toString(),et_long.getText().toString(),et_desk.getText().toString(),sp_kategori.getSelectedItem().toString());
+               }
+
            }
 
        });
 
     }
-
-
-
-    public boolean getRecord() {
-        boolean[] a = {false};
-        new AsyncTask<Void, Void, Boolean>() {
-            Date dStart = null;
-            Date dEnd = null;
-//            https://www.studytutorial.in/android-line-chart-or-line-graph-using-mpandroid-library-tutorial
-//            List<TransactionDB> transactions = new ArrayList<>();
-
-            ProgressDialog dialog =new ProgressDialog(TambahWisata.this);
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                dialog.setMessage("Loading get data...");
-
-                obj.runOnUiThread(new Runnable() {
-                    public void run() {
-                        dialog.show();
-                    }
-                });
-                dStart = new Date();
-                dEnd = new Date();
-
-            }
-
-            @Override
-            protected Boolean doInBackground(Void... voids) {
-                boolean b=false;
-
-
-                HttpUrl.Builder httpUrlBuilder = new HttpUrl.Builder();
-
-                try (Response response = new Api(TambahWisata.this).
-                        get(getString(R.string.api_wisata))) {
-                    if (response == null || !response.isSuccessful())
-                        throw new IOException("Unexpected code = " + response);
-
-                    String responseBodyString = response.body().string();
-                    JSONObject responseBodyObject = new JSONObject(responseBodyString);
-
-                    List<wisata.Data> data =new ArrayList<>();
-
-                    if (responseBodyObject.getBoolean("status")) {
-                        Gson gson = new Gson();
-                        wisata fromJson = gson.fromJson(responseBodyString, wisata.class);
-
-                        for (int x = 0; x < fromJson.getData().size(); x++) {
-
-                            data.add(fromJson.getData().get(x));
-
-                        }
-
-
-                        obj.runOnUiThread(new Runnable() {
-
-                            public void run() {
-                                adapter.setList(data);
-
-                            }
-                        });
-                    }else {
-                        obj.runOnUiThread(new Runnable() {
-                            public void run() {
-                                adapter.setList(data);
-                                Toast.makeText(obj, "Tidak Ada data", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                } catch (IOException e) {
-                    obj.runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(obj, "Terjadi Respon error server", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return  b;
-            }
-
-            @Override
-            protected void onPostExecute(Boolean aVoid) {
-                super.onPostExecute(aVoid);
-                obj.runOnUiThread(new Runnable() {
-                    public void run() {
-                        if (dialog!=null&dialog.isShowing()){
-                            dialog.dismiss();
-                        }
-                    }
-                });
-
-
-            }
-        }.execute();
-
-
-        return  a[0];
-
-    }
-
+    
     public boolean simpan(String nama,String lati,String longt, String desk, String kategori) {
         boolean[] a = {false};
 
@@ -277,6 +190,99 @@ private Spinner sp_kategori;
         return  a[0];
 
     }
+
+    public boolean update(String id, String nama, String lati, String longt, String desk, String kategori, String foto) {
+        boolean[] a = {false};
+
+        new AsyncTask<Void, Void, Boolean>() {
+            ProgressDialog dialog =new ProgressDialog(TambahWisata.this);
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                dialog.setMessage("Loading update data...");
+
+                obj.runOnUiThread(new Runnable() {
+                    public void run() {
+                        dialog.show();
+                    }
+                });
+            }
+
+            @Override
+            protected Boolean doInBackground(Void... voids) {
+                boolean b=false;
+                FormBody.Builder formBody = new FormBody.Builder()
+                        .add("id", id)
+                        .add("nama", nama)
+                        .add("lnglat", longt+","+lati)
+                        .add("deskripsi", desk)
+                        .add("foto", foto)
+                        .add("kategori", kategori)
+                        .add("action", "PUT");
+                try (Response response = new Api(TambahWisata.this).
+                        post(getString(R.string.api_wisata),formBody)) {
+                    if (response == null || !response.isSuccessful())
+                        throw new IOException("Unexpected code = " + response);
+
+                    String responseBodyString = response.body().string();
+                    JSONObject responseBodyObject = new JSONObject(responseBodyString);
+                    if (responseBodyObject.getBoolean("status")) {
+
+                        obj.runOnUiThread(new Runnable() {
+                            public void run() {
+                                if (dialog!=null&dialog.isShowing()){
+                                    dialog.dismiss();
+                                }
+
+
+                                Toast.makeText(obj, "Berhasil diedit", Toast.LENGTH_SHORT).show();
+                                Intent returnIntent = new Intent();
+                                setResult(Activity.RESULT_OK,returnIntent);
+                                finish();
+
+                            }
+                        });
+                    }else {
+                        obj.runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(obj, "Return false ,kesalahan data", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                } catch (IOException e) {
+                    obj.runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(obj, "Terjadi Respon error server", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return  b;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean aVoid) {
+                super.onPostExecute(aVoid);
+                obj.runOnUiThread(new Runnable() {
+                    public void run() {
+                        if (dialog!=null&dialog.isShowing()){
+                            dialog.dismiss();
+                        }
+                    }
+                });
+
+
+            }
+        }.execute();
+
+
+        return  a[0];
+
+    }
+
 
     public interface ListenerDialog {
         void onClick(int i);
