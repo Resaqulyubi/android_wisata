@@ -79,10 +79,8 @@ public class LoginActivity extends Activity {
 
                         obj.runOnUiThread(new Runnable() {
                             public void run() {
-                                if (dialog!=null&dialog.isShowing()){
-                                    dialog.dismiss();
-                                }
                                 startActivity(new Intent(LoginActivity.this, listWisataActivityAdmin.class));
+
 
                             }
                         });

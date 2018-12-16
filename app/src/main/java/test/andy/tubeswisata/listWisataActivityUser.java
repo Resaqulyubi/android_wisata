@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,9 +27,10 @@ import okhttp3.Response;
 import test.andy.tubeswisata.model.wisata;
 import test.andy.tubeswisata.network.Api;
 
-public class listWisataActivityUser extends Activity {
+public class listWisataActivityUser extends AppCompatActivity {
     private AdapterWisata adapter;
     private listWisataActivityUser obj;
+    private android.support.v7.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,11 @@ public class listWisataActivityUser extends Activity {
         setContentView(R.layout.activity_wisata);
         ListView lsvw_data=findViewById(R.id.id_list);
         obj=this;
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(false);
+        getSupportActionBar().setTitle("Wisata");
 
         adapter=new AdapterWisata(this);
         lsvw_data.setAdapter(adapter);
@@ -50,6 +59,23 @@ public class listWisataActivityUser extends Activity {
         getRecord();
     }
 
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_refresh, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_refresh) {
+            getRecord();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     public boolean getRecord() {
         boolean[] a = {false};
         new AsyncTask<Void, Void, Boolean>() {

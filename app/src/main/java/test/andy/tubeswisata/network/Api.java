@@ -29,8 +29,8 @@ public class Api {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
     private static final String TAG = "Api";
-    private long timeOut = 25;
-    private long defaultTimeOut = 25;
+    private long timeOut = 31;
+    private long defaultTimeOut = 31 ;
     private String defaultApiHost="";
     private static Api api = null;
 
@@ -87,6 +87,28 @@ public class Api {
 
         okHttpClient = okHttpClientBuilder.build();
     }
+
+    public Api(Context context,String upload) {
+        this.context = context;
+
+        httpUrlBuilder = new HttpUrl.Builder()
+                .scheme(context.getString(R.string.api_scheme))
+                .host(context.getString(R.string.api_host))
+                .addPathSegment(context.getString(R.string.api_segment1));
+
+
+
+        httpUrl = httpUrlBuilder.build();
+        request = new Request.Builder()
+                .url(httpUrl.toString())
+                .build();
+
+        okHttpClientBuilder = new OkHttpClient.Builder()
+                .connectTimeout(getTimeOut(), TimeUnit.SECONDS);
+
+        okHttpClient = okHttpClientBuilder.build();
+    }
+
 
 
     public Context getContext() {
@@ -259,6 +281,7 @@ public class Api {
 
     private Response post(String url, @Nullable RequestBody requestBody, @Nullable FormBody.Builder formBody, @Nullable Callback callback) {
         String fullUrl = httpUrl.newBuilder().addPathSegments(url).build().toString();
+        Log.d(TAG, "post: fullUrl"+fullUrl);
         Response response = null;
 
         if (formBody == null) {

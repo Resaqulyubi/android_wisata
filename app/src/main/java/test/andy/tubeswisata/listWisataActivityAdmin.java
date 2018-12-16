@@ -7,7 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -36,7 +39,7 @@ import test.andy.tubeswisata.util.Util;
 public class listWisataActivityAdmin extends AppCompatActivity {
     private listWisataActivityAdmin obj;
     private AdapterWisata adapter;
-
+    private android.support.v7.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +48,12 @@ public class listWisataActivityAdmin extends AppCompatActivity {
 
         ListView lsvw_data=findViewById(R.id.id_list);
         Button btn_tambah=findViewById(R.id.btn_tambah);
-
         obj = this;
-
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(false);
+        getSupportActionBar().setTitle("[Admin] Wisata");
 
         btn_tambah.setVisibility(View.VISIBLE);
         adapter=new AdapterWisata(this);
@@ -92,10 +98,26 @@ public class listWisataActivityAdmin extends AppCompatActivity {
 
 
         btn_tambah.setOnClickListener(view -> {
-            startActivityForResult(new Intent(this, TambahWisata.class),1);
+            startActivityForResult(new Intent(this, TambahWisata.class).putExtra("add image",true),1);
         });
 
         getRecord();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_refresh, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_refresh) {
+            getRecord();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -116,9 +138,6 @@ public class listWisataActivityAdmin extends AppCompatActivity {
         new AsyncTask<Void, Void, Boolean>() {
             Date dStart = null;
             Date dEnd = null;
-//            https://www.studytutorial.in/android-line-chart-or-line-graph-using-mpandroid-library-tutorial
-//            List<TransactionDB> transactions = new ArrayList<>();
-
             ProgressDialog dialog =new ProgressDialog(listWisataActivityAdmin.this);
 
             @Override
@@ -139,9 +158,6 @@ public class listWisataActivityAdmin extends AppCompatActivity {
             @Override
             protected Boolean doInBackground(Void... voids) {
                 boolean b=false;
-
-
-                HttpUrl.Builder httpUrlBuilder = new HttpUrl.Builder();
 
                 try (Response response = new Api(listWisataActivityAdmin.this).
                         get(getString(R.string.api_wisata))) {
@@ -211,6 +227,26 @@ public class listWisataActivityAdmin extends AppCompatActivity {
         return  a[0];
 
     }
+
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        showdialogKeluar();
+    }
+
+    public void showdialogKeluar(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Apakah anda ingin Logout?");
+        builder.setPositiveButton("YA", (dialogInterface, i) -> {
+          finish();
+        });
+        builder.setNegativeButton("TIDAK", (dialogInterface, i) -> {
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 
     public boolean delete(String id) {
         boolean[] a = {false};

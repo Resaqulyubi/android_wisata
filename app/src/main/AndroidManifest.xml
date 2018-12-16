@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="test.andy.tubeswisata">
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
@@ -19,7 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".listWisataActivityUser">
+        <activity android:name=".listWisataActivityUser"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
 
@@ -29,7 +31,8 @@
         <activity android:name=".LoginActivity">
 
         </activity>
-        <activity android:name=".listWisataActivityAdmin">
+        <activity android:name=".listWisataActivityAdmin"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
 
